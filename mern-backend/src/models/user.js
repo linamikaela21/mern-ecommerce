@@ -34,21 +34,24 @@ const userSchema = new mongoose.Schema({
     hash_password: {
         type: String,
         required: true,
-    },
-    role: {
+      },
+      role: {
         type: String,
-        enum: ['user', 'admin'],
-        default: 'admin'
-    },
-    profilePhoto: {type: String},
-    contactNumber: {type: String},
+        enum: ['user', 'admin', 'super-admin'],
+        default: 'user',
+      },
+    profilePhoto: { type: String },
+    contactNumber: { type: String }
 }, {timestamps: true})
 
-//10 es la cantidad de caracteres de longitud que setteo al hast para la password
-userSchema.virtual('password').set((password)=> this.hash_password = bcrypt.hashSync(password, 10))
-
-userSchema.methods = {
-    authenticate: (password)=> bcrypt.compareSync(password, this.hash_password)
-}
-
-module.exports = mongoose.model('User', userSchema)
+userSchema.virtual('fullName').get(function () {
+    return `${this.firstName} ${this.lastName}`;
+  });
+  
+  userSchema.methods = {
+    authenticate: async function (password) {
+      return await bcrypt.compare(password, this.hash_password);
+    },
+  };
+  
+  module.exports = mongoose.model('User', userSchema)
