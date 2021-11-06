@@ -4,7 +4,8 @@ const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-const userRoutes = require('./routes/user')
+const userRoutes = require('./routes/auth')
+const adminRoutes = require('./routes/admin/auth')
 
 //Libreria dotenv para leer las variables de entorno
 env.config()
@@ -16,6 +17,7 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
 app.use(bodyParser())
 
 app.use('/api', userRoutes)
+app.use('/api', adminRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`)
