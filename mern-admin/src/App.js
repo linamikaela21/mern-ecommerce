@@ -1,4 +1,3 @@
-import './App.css'
 import { NavBar } from './components/NavBar/NavBar'
 import { RouterWeb } from './RoutesWeb/';
 
