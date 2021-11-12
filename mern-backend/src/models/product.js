@@ -28,8 +28,8 @@ const productSchema = new mongoose.Schema({
     productPicture: [
         { img: { type: String }}
     ],
-    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
-    createBy : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
+    createBy : { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     reviews: [
         {
             userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
