@@ -1,5 +1,5 @@
-import { NavLink, Link } from 'react-router-dom'
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom'
+import { Navbar, Container, Nav } from 'react-bootstrap'
 
 export const NavBar = () => {
     return (
@@ -21,8 +21,8 @@ export const NavBar = () => {
       </NavDropdown>
     </Nav> */}
     <Nav className='d-flex flex-end fs-5'>
-        <li className='nav-item'><NavLink to='/signin' className='nav-link text-white text-decoration-none p-3'>Sing in </NavLink></li>
-        <li className='nav-item'><NavLink eventKey={2} to='/signup' className='nav-link text-white text-decoration-none p-3'>Sing up</NavLink></li>
+        <li className='nav-item' key='signin'><NavLink to='/signin' className='nav-link text-white text-decoration-none p-3'>Sing in </NavLink></li>
+        <li className='nav-item' key='signup'><NavLink to='/signup' className='nav-link text-white text-decoration-none p-3'>Sing up</NavLink></li>
     </Nav>
   </Navbar.Collapse> 
   </Container>
