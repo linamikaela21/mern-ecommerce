@@ -5,7 +5,7 @@ exports.createProduct = (req, res) => {
     //res.status(200).json({ file: req.files, body: req.body })
 
     const { 
-        name, description, price, offer, reviews, category, createBy, updateAt
+        name, description, price, quantity, category
     } = req.body
 
     let productPicture = []
