@@ -2,6 +2,7 @@ const express = require('express')
 const env = require('dotenv')
 const app = express()
 const mongoose = require('mongoose')
+const path = require('path')
 
 const userRoutes = require('./routes/auth')
 const adminRoutes = require('./routes/admin/auth')
@@ -17,6 +18,7 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
 
 //Para leer la info que mando en JSON instalo body-parser
 app.use(express.json())
+app.use('public', express.static(path.join(__dirname, 'uploads')))
 
 app.use('/api', userRoutes)
 app.use('/api', adminRoutes)

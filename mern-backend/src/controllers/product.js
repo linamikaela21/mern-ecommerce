@@ -21,6 +21,7 @@ exports.createProduct = (req, res) => {
         price, 
         productPicture, 
         category, 
+        quantity,
         createBy: req.user._id, 
     })
 

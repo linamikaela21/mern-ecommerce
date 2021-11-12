@@ -4,7 +4,7 @@ const multer = require('multer')
 const shortId = require('shortId')
 const path = require('path')
 
-const { createProduct, addProduct, getProduct } = require('../controllers/product')
+const { createProduct } = require('../controllers/product')
 const { requireSignIn, adminMiddleware } = require('../middleware/middleware')
 
 

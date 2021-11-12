@@ -10,25 +10,34 @@ exports.addItemToCart = (req, res) => {
 
             const product = req.body.cartItems.product
             const item = cart.cartItems.find(c => c.product == product)
+            let condition, update
 
             if(item) {
-                Cart.findOneAndUpdate({ "user": req.user._id, "cartItems.product": product }, {
+                condition = { "user": req.user._id, "cartItems.product": product }
+                update = {
                     '$set': {
                         'cartItems': {
                         ...req.body.cartItems, 
                         quantity: item.quantity + req.body.cartItems.quantity
                         }
                     }
-                })
-                exec((error, cart) => {
-                    if(error) res.status(400).json({ error })
-                    if(cart) res.status(201).json({ cart: _cart })
-                })
+                }
+        } else {  //Si no existe carrito crear uno
+            condition = { user: req.user._id }
+            update = { 
+                '$push': {
+                'cartItems': req.body.cartItems
+                }
             }
 
+            Cart.findOneAndUpdate(condicion, update)
+            .exec((error, cart) => {
+                if(error) return res.status(400).json({ error })
+                if(cart) return res.status(201).json({ cart: _cart })
+            })
         }
         //Si no existe carrito crear uno
-        else {
+     } else {
             const cart = new Cart({
                 user: req.user._id,
                 cartItems: [req.body.cartItems]
@@ -40,5 +49,4 @@ exports.addItemToCart = (req, res) => {
             })
         }
     })
-
 }
