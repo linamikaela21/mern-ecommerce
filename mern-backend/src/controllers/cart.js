@@ -7,15 +7,24 @@ exports.addItemToCart = (req, res) => {
         if(error) return res.status(400).json({ error })
         //Si existe carrito agrandarlo en cantidad
         if(cart) {
-            Cart.findOneAndUpdate({ user: req.user._id }, {
-                '$push': {
-                    'cartItems': req.body.cartItems
-                }
-            })
-            exec((error, cart) => {
-                if(error) res.status(400).json({ error })
-                if(cart) res.status(201).json({ cart: _cart })
-            })
+
+            const product = req.body.cartItems.product
+            const item = cart.cartItems.find(c => c.product == product)
+
+            if(item) {
+                Cart.findOneAndUpdate({ "user": req.user._id, "cartItems.product": product }, {
+                    '$set': {
+                        'cartItems': {
+                        ...req.body.cartItems, 
+                        quantity: item.quantity + req.body.cartItems.quantity
+                        }
+                    }
+                })
+                exec((error, cart) => {
+                    if(error) res.status(400).json({ error })
+                    if(cart) res.status(201).json({ cart: _cart })
+                })
+            }
 
         }
         //Si no existe carrito crear uno
