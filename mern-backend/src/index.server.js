@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const userRoutes = require('./routes/auth')
 const adminRoutes = require('./routes/admin/auth')
 const categoryRoutes = require('./routes/category')
+const productRoutes = require('./routes/product')
 
 //Libreria dotenv para leer las variables de entorno
 env.config()
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use('/api', userRoutes)
 app.use('/api', adminRoutes)
 app.use('/api', categoryRoutes)
+app.use('/api', productRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`)
