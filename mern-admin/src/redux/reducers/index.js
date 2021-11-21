@@ -1,15 +1,7 @@
-const initialState = {
-    logged: false
-  }
-  
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-    //   case 'GET_BEST_LESSONS':
-    //     return { ...state, bestLessons: action.payload }
+import { combineReducers } from "redux"
+import { authReducers } from './auth.reducers'
 
-      default:
-        return state
-    }
-  }
-
+export const rootReducer = combineReducers({
+    auth: authReducers
+})
   export default rootReducer

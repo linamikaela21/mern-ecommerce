@@ -1,39 +1,57 @@
-import { Form, Col, Row, Button, Container } from 'react-bootstrap'
-import { Input } from '../../components/Common/Input/Input'
+import { SignInView } from './SignInView'
+import { Home } from '../Home/Home'
+import { logIn, isUserLoggedIn } from '../../redux/actions/auth.actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useNavigate  } from 'react-router-dom'
 
-export const SignIn = (props) => {
+export const SignIn = () => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [errors, setErrors] = useState('')
+    const [role, setRole] = useState('')
+
+    const auth = useSelector(state => state.auth)
+
+    const navigate = useNavigate()
+
+    const dispatch = useDispatch()
+
+    const userLogIn = (e) => {
+        
+        e.preventDefault()
+
+        const user = { email, password }
+
+        dispatch(logIn(user))
+    }
+
+    useEffect(() => {
+        if(!auth.authenticate) {
+        dispatch(isUserLoggedIn)
+        }
+    }, [])
+
     return (
-        <Container>
-             <Row style={{ marginTop: '50px'}} className='fs-5 d-flex justify-content-start'>
-                 <Col md={{ span: 6, offset: 3 }} >
-
-                    <Form>
-
-                    <Input 
-                          label='E-mail'
-                          type='email'
-                          placeholder='Enter your E-mail'
-                          value='Email'
-                          onChange={() => {}}
-                      />
-                        <Input 
-                          label='Password'
-                          type='password'
-                          placeholder='Enter your Password'
-                          value='Password'
-                          onChange={() => {}}
-                      />
-
-                      <Form.Group className="mb-3" id="formGridCheckbox">
-                        <Form.Check type="checkbox" label="Remember me" />
-                      </Form.Group>
-
-                      <Button variant="primary" type="submit" className='m-1 fs-5'>
-                        Submit
-                      </Button>
-                    </Form>
-                 </Col>
-             </Row>
-        </Container>
+        auth.authenticate ?
+        <>
+        { navigate('/') }
+        < Home />
+        </>
+        :
+        <div>
+            <SignInView 
+            userLogIn={userLogIn}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            errors={errors}
+            setErrors={setErrors}
+            role={role}
+            setRole={setRole}
+            />
+        </div>
     )
 }

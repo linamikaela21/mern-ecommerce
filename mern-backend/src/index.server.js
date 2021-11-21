@@ -3,6 +3,7 @@ const env = require('dotenv')
 const app = express()
 const mongoose = require('mongoose')
 const path = require('path')
+const cors = require('cors')
 
 const userRoutes = require('./routes/auth')
 const adminRoutes = require('./routes/admin/auth')
@@ -16,9 +17,13 @@ env.config()
 //Mongo conection
 mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@lalidb.ggh8z.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`).then(() => console.log('DataBase connected'))
 
+
 //Para leer la info que mando en JSON instalo body-parser
 app.use(express.json())
 app.use('public', express.static(path.join(__dirname, 'uploads')))
+
+//Para obtener Authorizacion para ingresar
+app.use(cors())
 
 app.use('/api', userRoutes)
 app.use('/api', adminRoutes)
