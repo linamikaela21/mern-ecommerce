@@ -58,7 +58,7 @@ exports.signin = (req, res) => {
         res.status(200).json({
           token,
           user: { _id, firstName, lastName, email, role, fullName },
-        });
+        })
       } else {
         return res.status(400).json({
           message: 'Something went wrong',

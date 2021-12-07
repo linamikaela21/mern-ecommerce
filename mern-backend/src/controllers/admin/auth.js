@@ -52,10 +52,11 @@ exports.signin = (req, res) => {
         // );
         const token = generateJwtToken(user._id, user.role);
         const { _id, firstName, lastName, email, role, fullName } = user;
+        res.cookie('token', token, { expiresIn: '1h'})
         res.status(200).json({
           token,
           user: { _id, firstName, lastName, email, role, fullName },
-        });
+        })
       } else {
         return res.status(400).json({
           message: 'Something went wrong',
@@ -66,3 +67,10 @@ exports.signin = (req, res) => {
     }
   })
 }
+
+exports.signout = (req, res) => {
+  res.clearCookies('token')
+  res.status(200).json({
+    menssage: 'Signout successfully'
+  })
+  }
