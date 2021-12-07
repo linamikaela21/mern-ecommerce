@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Home } from '../containers/Home/Home'
 import { SignIn } from "../containers/SignIn/SignIn"
 import { SignUp } from "../containers/SignUp/SignUp"
+import { Products } from "../containers/Products/Products"
+import { Orders } from "../containers/Orders/Orders"
 
 export const RouterWeb = () => {
   
@@ -24,6 +26,8 @@ export const RouterWeb = () => {
       <Route exact path='/' element={<Home/>} />
       <Route exact path='/signin' element={<SignIn/>} />
       <Route exact path='/signup' element={<SignUp />} />
+      <Route path='/products' element={<Products />} />
+      <Route path='/orders' element={<Orders />} />
       </Routes>
       </>
     )
