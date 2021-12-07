@@ -19,11 +19,8 @@ export const SignIn = () => {
     const dispatch = useDispatch()
 
     const userLogIn = (e) => {
-
         e.preventDefault()
-
         const user = { email, password }
-
         dispatch(logIn(user))
     }
 

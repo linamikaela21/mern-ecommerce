@@ -32,6 +32,10 @@ export const authReducers = (state = initialState, action) => {
         }
         break
 
+        case authConstants.LOGOUT_REQUEST:
+          state = {...initialState}
+          break
+
         default:
           return state
     }

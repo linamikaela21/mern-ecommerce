@@ -16,7 +16,7 @@ export const RouterWeb = () => {
     if(!auth.authenticate) {
     dispatch(isUserLoggedIn)
     }
-}, [])
+}, [dispatch, auth.authenticate])
 
     return (
       <>
