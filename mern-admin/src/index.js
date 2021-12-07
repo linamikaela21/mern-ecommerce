@@ -10,9 +10,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+        <App />
+      </React.StrictMode>,
     </Router>
-    </Provider>,
+  </Provider>,
   document.getElementById('root')
 )

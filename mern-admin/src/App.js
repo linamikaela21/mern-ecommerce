@@ -7,7 +7,7 @@ function App() {
       <NavBar />
       <RouterWeb />
     </div>
-  );
+  )
 }
 
 export default App;
