@@ -7,6 +7,7 @@ import { SignIn } from "../containers/SignIn/SignIn"
 import { SignUp } from "../containers/SignUp/SignUp"
 import { Products } from "../containers/Products/Products"
 import { Orders } from "../containers/Orders/Orders"
+import { Categories } from "../containers/Categories/Categories"
 
 export const RouterWeb = () => {
   
@@ -28,6 +29,7 @@ export const RouterWeb = () => {
       <Route exact path='/signup' element={<SignUp />} />
       <Route path='/products' element={<Products />} />
       <Route path='/orders' element={<Orders />} />
+      <Route path='/category' element={<Categories />} />
       </Routes>
       </>
     )
