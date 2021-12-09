@@ -8,6 +8,6 @@ router.post('/admin/signup', validateSignUpRequest, isRequestValidated, signup)
 
 router.post('/admin/signin', validateSignInRequest, isRequestValidated, signin)
 
-router.post('/admin/signout', requireSignIn, signout)
+router.post('/admin/signout', signout)
 
 module.exports = router
