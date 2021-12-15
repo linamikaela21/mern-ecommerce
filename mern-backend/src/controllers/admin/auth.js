@@ -22,7 +22,7 @@ exports.signup = (req, res) => {
       email,
       hash_password,
       userName: Math.random().toString(),
-      role: 'admin'
+      role: 'ADMIN'
     })
     
     _user.save((error, data) => {
@@ -44,15 +44,10 @@ exports.signin = (req, res) => {
     if (error) return res.status(400).json({ error });
     if (user) {
       const isPassword = await user.authenticate(req.body.password)
-      if (isPassword && user.role === 'admin') {
-        // const token = jwt.sign(
-        //   { _id: user._id, role: user.role },
-        //   process.env.JWT_SECRET,
-        //   { expiresIn: '1d' }
-        // );
+      if (isPassword && user.role === 'ADMIN') {
         const token = generateJwtToken(user._id, user.role);
         const { _id, firstName, lastName, email, role, fullName } = user;
-        res.cookie('token', token, { expiresIn: '1h'})
+        res.cookie('token', token, { expiresIn: '1d'})
         res.status(200).json({
           token,
           user: { _id, firstName, lastName, email, role, fullName },
@@ -69,7 +64,7 @@ exports.signin = (req, res) => {
 }
 
 exports.signout = (req, res) => {
-  res.clearCookies('token')
+  res.clearCookie('token')
   res.status(200).json({
     menssage: 'Signout successfully'
   })

@@ -29,7 +29,7 @@ export const RouterWeb = () => {
       <Route exact path='/signup' element={<SignUp />} />
       <Route path='/products' element={<Products />} />
       <Route path='/orders' element={<Orders />} />
-      <Route path='/category' element={<Categories />} />
+      <Route path='/categories' element={<Categories />} />
       </Routes>
       </>
     )

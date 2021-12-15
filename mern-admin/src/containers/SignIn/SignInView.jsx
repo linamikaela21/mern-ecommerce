@@ -25,8 +25,17 @@ export const SignInView = (props) => {
               onChange={(e) => props.setPassword(e.target.value)}
             />
 
+            <Input
+              label='Role'
+              type='text'
+              placeholder='Enter your Role admin OR user'
+              value={props.role}
+              onChange={(e) => props.setRole(e.target.value)}
+            />
+
             {/* <Form.Group className="mb-3" id="formGridCheckbox">
-                        <Form.Check type="checkbox" label="Remember me" />
+                        <Form.Check 
+                        type="checkbox" label="Remember me" />
                       </Form.Group> */}
 
             <Button variant="primary" type="submit" className='m-1 fs-5'>

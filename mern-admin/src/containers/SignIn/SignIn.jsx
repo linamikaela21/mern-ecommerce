@@ -20,7 +20,7 @@ export const SignIn = () => {
 
     const userLogIn = (e) => {
         e.preventDefault()
-        const user = { email, password }
+        const user = { email, password, role }
         dispatch(logIn(user))
     }
 

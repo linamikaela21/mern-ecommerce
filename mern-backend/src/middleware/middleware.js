@@ -11,11 +11,11 @@ exports.requireSignIn = (req, res, next) => {
 }
 
 exports.adminMiddleware = (req, res, next) => {
-    if(req.user.role !== 'admin') return res.status(400).json({ message: 'Admin access denied' })
+    if(req.user.role !== 'ADMIN') return res.status(400).json({ message: 'Admin access denied' })
     next()
 }
 
 exports.userMiddleware = (req, res, next) => {
-    if(req.user.role !== 'user') return res.status(400).json({ message: 'User access denied' })
+    if(req.user.role !== 'USER') return res.status(400).json({ message: 'User access denied' })
     next()
 }
