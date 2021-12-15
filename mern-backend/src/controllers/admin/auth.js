@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const generateJwtToken = (_id, role) => {
-  return jwt.sign({ _id, role }, process.env.JWT_SECRET, {expiresIn: '1h'})
+  return jwt.sign({ _id, role }, process.env.JWT_SECRET, {expiresIn: '1d'})
 }
 
 exports.signup = (req, res) => {
@@ -45,9 +45,9 @@ exports.signin = (req, res) => {
     if (user) {
       const isPassword = await user.authenticate(req.body.password)
       if (isPassword && user.role === 'ADMIN') {
-        const token = generateJwtToken(user._id, user.role);
-        const { _id, firstName, lastName, email, role, fullName } = user;
-        res.cookie('token', token, { expiresIn: '1d'})
+        const token = generateJwtToken(user._id, user.role)
+        const { _id, firstName, lastName, email, role, fullName } = user
+        res.cookie('token', token, { expiresIn: '1d'} )
         res.status(200).json({
           token,
           user: { _id, firstName, lastName, email, role, fullName },

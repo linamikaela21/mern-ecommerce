@@ -12,7 +12,7 @@ const initialState = {
   authenticating: false,
   error: null,
   message: '',
-  logging: false
+  loading: false
 }
 
 export const authReducers = (state = initialState, action) => {
@@ -38,7 +38,7 @@ export const authReducers = (state = initialState, action) => {
     case authConstants.LOGOUT_REQUEST:
       state = {
         ...state,
-        logging: true
+        loading: true
       }
       break
 
@@ -49,7 +49,7 @@ export const authReducers = (state = initialState, action) => {
     case authConstants.LOGOUT_FAIL:
       state = {
         ...state,
-        logging: false,
+        loading: false,
         error: action.payload.error
       }
       break

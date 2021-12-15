@@ -1,0 +1,27 @@
+.sideBar ul {
+    position: fixed;
+    top: 5em;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #eee;
+    box-shadow: inset 0 0 0.1rem grey;
+}
+
+.sideBar ul li {
+    list-style: none;
+}
+
+.sideBar li a {
+    display: block;
+    color: #333;
+    border-radius: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    margin: 0.1rem 0.1rem;
+    text-decoration: none;
+}
+
+.sideBar li a.active {
+    background: #333;
+    color: #fff;
+}

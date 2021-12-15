@@ -1,7 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap"
 import { useSelector } from "react-redux"
-import { NavLink } from "react-router-dom"
-import './Home.css'
 
 export const Home = () => {
     const auth = useSelector(state => state.auth)
@@ -19,12 +17,6 @@ export const Home = () => {
                         (
 
                             <Row>
-                                <Col md={2} className='sideBar'>
-                                    <li> <NavLink to='/' className='text-decoration-none fs-4'>Home</NavLink></li>
-                                    <li> <NavLink to='/categories' className='text-decoration-none fs-4'>Categories</NavLink></li>
-                                    <li> <NavLink to='/orders' className='text-decoration-none fs-4'>Products</NavLink></li>
-                                    <li> <NavLink to='/products' className='text-decoration-none fs-4'>Orders</NavLink></li>
-                                </Col>
                                 <Col md={10} style={{ marginLeft: 'auto' }}>Container</Col>
                             </Row>
                         )

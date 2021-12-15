@@ -28,14 +28,16 @@ export const ViewCategories = (props) => {
           <Modal.Title>Add New Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <form>
           <Input
+            label={'Category Name'}
             value={props.categoryName}
             placeholder={'Category Name'}
             onChange={e => props.setCategoryName(e.target.value)}
           />
-          <select className="form-control" 
-          value={props.parentCategoryId}
-          onChange={e => props.setParentCategoryId(e.target.value)}
+          <select className="form-control"
+            value={props.parentCategoryId}
+            onChange={e => props.setParentCategoryId(e.target.value)}
           >
             <option>Select Category</option>
             {
@@ -49,6 +51,7 @@ export const ViewCategories = (props) => {
             type='file'
             onChange={props.handleCategoryImage}
           />
+          </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={props.handleNewCategory}>

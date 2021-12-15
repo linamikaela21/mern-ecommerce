@@ -49,15 +49,19 @@ export const Categories = () => {
 
     const handleNewCategory = () => {
         
-        const form = new FormData()
+        let form = {
+            name: categoryName,
+            parentId: parentCategoryId,
+            categoryPicture: categoryImage
+        }
+
+        //const form = new FormData()
 
         //const cat = { categoryName, parentCategoryId, categoryImage }
 
-        form.append('name', categoryName)
-        form.append('parentId', parentCategoryId)
-        form.append('categoryPicture', categoryImage)
-
-        console.log(categoryName, parentCategoryId, categoryImage)
+        //form.append('name', categoryName)
+        //form.append('parentId', parentCategoryId)
+        //form.append('categoryPicture', categoryImage)
 
         dispatch(addCategory(form))
 
@@ -72,6 +76,8 @@ export const Categories = () => {
         <div>
             <ViewCategories
                 category={category}
+                show={show}
+                setShow={setShow}
                 renderCategories={renderCategories}
                 createCategoriesList={createCategoriesList}
                 categoryName={categoryName}
@@ -81,8 +87,6 @@ export const Categories = () => {
                 categoryImage={categoryImage}
                 handleCategoryImage={handleCategoryImage}
                 handleNewCategory={handleNewCategory}
-                show={show}
-                setShow={setShow}
             />
         </div>
     )

@@ -3,7 +3,7 @@ import { userContants } from '../actions/constants'
 const initialState = {
   error: null,
   message: '',
-  logging: false
+  loading: false
 }
 
 export const userReducers = (state = initialState, action) => {
@@ -12,14 +12,14 @@ export const userReducers = (state = initialState, action) => {
     case userContants.USER_REGISTER_REQUEST:
       state = {
         ...state,
-        logging: true
+        loading: true
       }
       break
 
     case userContants.USER_REGISTER_SUCCESS:
       state = {
         ...state,
-        logging: true,
+        loading: true,
         message: action.payload.message
       }
       break
@@ -27,7 +27,7 @@ export const userReducers = (state = initialState, action) => {
     case userContants.USER_REGISTER_FAIL:
       state = {
         ...state,
-        logging: false,
+        loading: false,
         error: action.payload.error
       }
       break

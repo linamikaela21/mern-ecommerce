@@ -17,7 +17,7 @@ export const RouterWeb = () => {
   
   useEffect(() => {
     if(!auth.authenticate) {
-    dispatch(isUserLoggedIn)
+    dispatch(isUserLoggedIn())
     }
 }, [dispatch, auth.authenticate])
 

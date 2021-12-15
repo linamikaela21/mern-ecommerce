@@ -33,7 +33,6 @@ export const SignUp = () => {
     const signup = (e) => {
         e.preventDefault()
         const user = { firstName, lastName, email, password, role }
-        console.log(user)
         dispatch(signUp(user))
     }
 
@@ -66,3 +65,5 @@ export const SignUp = () => {
             </>
     )
 }
+
+
