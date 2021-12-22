@@ -9,6 +9,8 @@ const initialState = {
 const buildNewCategory = (parentId, categories, category) => {
     let myCategories = []
 
+    console.log(parentId, categories, category)
+
     if(parentId === undefined){
         return [
             ...categories,
@@ -16,7 +18,6 @@ const buildNewCategory = (parentId, categories, category) => {
                 _id: category._id,
                 name: category.name,
                 slug: category.slug,
-                type: category.type,
                 subCat: []
             }
         ];
@@ -30,7 +31,7 @@ const buildNewCategory = (parentId, categories, category) => {
                 slug: category.slug,
                 parentId: category.parentId,
                 subCat: []
-            };
+            }
             myCategories.push({
                 ...cat,
                 subCat: cat.subCat.length > 0 ? [...cat.subCat, newCategory] : [newCategory]
@@ -46,7 +47,7 @@ const buildNewCategory = (parentId, categories, category) => {
 }
 
 export const categoriesReducers = (state = initialState, action) => {
-
+    console.log('reducer =>', action.type, action.payload, 'vos sos undefined ?')
     switch (action.type) {
 
         case categoriesContants.GET_ALL_CATEGORIES_SUCCESS:
@@ -66,7 +67,6 @@ export const categoriesReducers = (state = initialState, action) => {
         case categoriesContants.ADD_NEW_CATEGORY_SUCCESS:
             const category = action.payload.categories
             const upgradeCategories = buildNewCategory(category.parentId, state.categories, category)
-            console.log('reducer =>', upgradeCategories);
             state = {
                 ...state,
                 categories: upgradeCategories,

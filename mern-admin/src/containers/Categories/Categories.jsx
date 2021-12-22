@@ -17,7 +17,7 @@ export const Categories = () => {
 
     const [categoryName, setCategoryName] = useState('')
     const [parentCategoryId, setParentCategoryId] = useState('')
-    const [categoryImage, setCategoryImage] = useState('')
+    const [categoryPicture, setCategoryPicture] = useState('')
 
     const renderCategories = (categories) => {
         let myCategories = []
@@ -43,25 +43,28 @@ export const Categories = () => {
         return options
     }
 
-    const handleCategoryImage = (e) => {
-        setCategoryImage(e.target.files[0])
+    const handleCategoryPicture = (e) => {
+        setCategoryPicture(e.target.files[0])
     }
 
     const handleNewCategory = () => {
         
         let form = {
             name: categoryName,
+        slug: categoryName,
             parentId: parentCategoryId,
-            categoryPicture: categoryImage
+            categoryPicture: categoryPicture
         }
 
-        //const form = new FormData()
+        //let form = new FormData()
 
-        //const cat = { categoryName, parentCategoryId, categoryImage }
+        //const cat = { categoryName, parentCategoryId, categoryPicture }
+        console.log(categoryName, parentCategoryId, categoryPicture)
 
-        //form.append('name', categoryName)
-        //form.append('parentId', parentCategoryId)
-        //form.append('categoryPicture', categoryImage)
+        // form.append('name', categoryName)
+        // form.append('slug', categoryName)
+        // form.append('parentId', parentCategoryId)
+        // form.append('categoryPicture', categoryPicture)
 
         dispatch(addCategory(form))
 
@@ -69,7 +72,7 @@ export const Categories = () => {
 
         setCategoryName('')
         setParentCategoryId('')
-        setCategoryImage('')
+        setCategoryPicture('')
     }
 
     return (
@@ -84,8 +87,8 @@ export const Categories = () => {
                 setCategoryName={setCategoryName}
                 parentCategoryId={parentCategoryId}
                 setParentCategoryId={setParentCategoryId}
-                categoryImage={categoryImage}
-                handleCategoryImage={handleCategoryImage}
+                categoryPicture={categoryPicture}
+                handleCategoryPicture={handleCategoryPicture}
                 handleNewCategory={handleNewCategory}
             />
         </div>

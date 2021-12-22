@@ -16,7 +16,7 @@ const initialState = {
 }
 
 export const authReducers = (state = initialState, action) => {
-
+  console.log('reducer =>', action)
   switch (action.type) {
     case authConstants.LOGIN_REQUEST:
       state = {
@@ -26,6 +26,7 @@ export const authReducers = (state = initialState, action) => {
       break
 
     case authConstants.LOGIN_SUCCESS:
+      
       state = {
         ...state,
         user: action.payload.user,

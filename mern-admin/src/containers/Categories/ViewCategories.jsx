@@ -47,9 +47,9 @@ export const ViewCategories = (props) => {
             }
           </select>
           <Input
-            name={props.categoryImage}
+            name={props.categoryPicture}
             type='file'
-            onChange={props.handleCategoryImage}
+            onChange={props.handleCategoryPicture}
           />
           </form>
         </Modal.Body>

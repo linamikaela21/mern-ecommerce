@@ -14,6 +14,7 @@ const createCategories = (categories, parentId = null) => {
             name: cat.name,
             slug: cat.slug,
             parentId: cat.parentId,
+            categoryPicture: cat.categoryPicture,
             subCat: createCategories(categories, cat._id)
         })
     }
@@ -32,7 +33,9 @@ exports.addCategory = (req, res) => {
 
     if(req.body.parentId) categoryObj.parentId = req.body.parentId
 
+    console.log(categoryObj, 'soy categories del back')
     const cat = new Category(categoryObj)
+
 
     cat.save((error, category) => {
         if(error) return res.status(400).json({ error })
