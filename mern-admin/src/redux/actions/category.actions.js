@@ -21,13 +21,16 @@ export const getAllCategories = () => {
     }
 }
 
-export const addCategory = (form) => {
-    console.log('action =>', form)
+export const addCategory = (form, token) => {
     return async dispatch => {
         dispatch({ type: categoriesContants.ADD_NEW_CATEGORY_REQUEST })
-            const res = await axios.post(`${api}/category/create`, form)
-            const { newCategory } = res.data.categories
-            console.log('res =>', newCategory)
+        try {
+            const res = await axios.post(`${api}/category/create`,form, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
+            const newCategory = res.data.category
             if (res.status === 201) {
                 dispatch({
                     type: categoriesContants.ADD_NEW_CATEGORY_SUCCESS,
@@ -39,5 +42,8 @@ export const addCategory = (form) => {
                     payload: res.data.error
                 });
             }
+        } catch (error) {
+            console.error(error)
+        }
     }
 }

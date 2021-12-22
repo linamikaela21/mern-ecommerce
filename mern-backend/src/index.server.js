@@ -25,6 +25,12 @@ app.use('public', express.static(path.join(__dirname, 'uploads')))
 //Para obtener Authorizacion para ingresar
 app.use(cors())
 
+app.use((req,res,next) =>  {
+    console.log('req', req)
+    console.log('req.body', req.body)
+    console.log('req.headers', req.headers)
+    next()
+})
 app.use('/api', userRoutes)
 app.use('/api', adminRoutes)
 app.use('/api', categoryRoutes)

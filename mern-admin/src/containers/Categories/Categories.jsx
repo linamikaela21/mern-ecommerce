@@ -11,6 +11,8 @@ export const Categories = () => {
 
     const category = useSelector(state => state.categories)
 
+    const { token } = useSelector(state => state.auth)
+
     useEffect(() => {
         dispatch(getAllCategories())
     }, [dispatch])
@@ -48,10 +50,10 @@ export const Categories = () => {
     }
 
     const handleNewCategory = () => {
-        
+
         let form = {
             name: categoryName,
-        slug: categoryName,
+            slug: categoryName,
             parentId: parentCategoryId,
             categoryPicture: categoryPicture
         }
@@ -65,8 +67,7 @@ export const Categories = () => {
         // form.append('slug', categoryName)
         // form.append('parentId', parentCategoryId)
         // form.append('categoryPicture', categoryPicture)
-
-        dispatch(addCategory(form))
+        dispatch(addCategory(form, token))
 
         setShow(false)
 
