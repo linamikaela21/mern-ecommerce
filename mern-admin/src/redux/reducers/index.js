@@ -9,7 +9,7 @@ export const rootReducer = combineReducers({
     auth: authReducers,
     user: userReducers,
     categories: categoryReducers,
-    product: productReducers,
+    products: productReducers,
     order: orderReducers
 })
   export default rootReducer

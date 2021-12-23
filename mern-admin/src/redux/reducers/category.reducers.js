@@ -47,7 +47,7 @@ const buildNewCategory = (parentId, categories, category) => {
 }
 
 export const categoriesReducers = (state = initialState, action) => {
-    console.log('reducer =>', action.type, action.payload, 'vos sos undefined ?')
+    console.log('reducer =>', action.type, 'payload =>', action.payload)
     switch (action.type) {
 
         case categoriesContants.GET_ALL_CATEGORIES_SUCCESS:

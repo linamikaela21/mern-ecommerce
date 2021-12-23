@@ -54,15 +54,19 @@ export const ViewProducts = (props) => {
                         }
                     </select>
                     {
-                        props.productPictures.length > 0 ? 
-                        props.productPictures.map((pic, index) => <div key={index}>{pic.name}</div>)
-                        : null
+                        props.productPictures?.length > 0 ?
+                            props.productPictures.map((pic, index) => <h4 key={index}>{pic}</h4>)
+                            : null
                     }
+
                     <Input
-                        name={props.productPictures}
-                        type='file'
-                        onChange={props.handleProductImage}
+                        label={'Product Pictures'}
+                        value={props.img}
+                        placeholder={'Product Pictures'}
+                        onChange={e => props.addImg(e)}
                     />
+
+                    <Button variant="success" onClick={e => props.handleProductImage(e)}> Add Image</Button>
 
                 </Modal.Body>
                 <Modal.Footer>

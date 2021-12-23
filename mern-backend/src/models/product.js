@@ -24,19 +24,20 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    image: {
+        type: Array,
+        required: true,
+    },
     offer: { type: Number },
-    productPicture: [
-        { img: { type: String }}
-    ],
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
-    createBy : { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    createBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     reviews: [
         {
             userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
             reviews: String
         }
     ],
-    updateAt: Date 
-}, {timestamps: true})
+    updateAt: Date
+}, { timestamps: true })
 
 module.exports = mongoose.model('Product', productSchema)

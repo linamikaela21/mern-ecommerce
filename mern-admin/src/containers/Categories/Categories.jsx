@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addCategory, getAllCategories } from "../../redux/actions/category.actions"
+import { addCategory } from "../../redux/actions/category.actions"
 import { ViewCategories } from "./ViewCategories"
 
 export const Categories = () => {
@@ -13,15 +13,11 @@ export const Categories = () => {
 
     const { token } = useSelector(state => state.auth)
 
-    useEffect(() => {
-        dispatch(getAllCategories())
-    }, [dispatch])
-
     const [categoryName, setCategoryName] = useState('')
     const [parentCategoryId, setParentCategoryId] = useState('')
     const [categoryPicture, setCategoryPicture] = useState('')
 
-    const renderCategories = (categories) => {
+    const renderCategories = categories => {
         let myCategories = []
         categories.forEach(cat => {
             myCategories.push(
@@ -45,7 +41,7 @@ export const Categories = () => {
         return options
     }
 
-    const handleCategoryPicture = (e) => {
+    const handleCategoryPicture = e => {
         setCategoryPicture(e.target.files[0])
     }
 
@@ -57,16 +53,9 @@ export const Categories = () => {
             parentId: parentCategoryId,
             categoryPicture: categoryPicture
         }
+        
+        console.log(form)
 
-        //let form = new FormData()
-
-        //const cat = { categoryName, parentCategoryId, categoryPicture }
-        console.log(categoryName, parentCategoryId, categoryPicture)
-
-        // form.append('name', categoryName)
-        // form.append('slug', categoryName)
-        // form.append('parentId', parentCategoryId)
-        // form.append('categoryPicture', categoryPicture)
         dispatch(addCategory(form, token))
 
         setShow(false)
