@@ -79,7 +79,7 @@ export const Categories = () => {
                 setParentCategoryId={setParentCategoryId}
                 categoryPicture={categoryPicture}
                 handleCategoryPicture={handleCategoryPicture}
-                handleNewCategory={handleNewCategory}
+                handleClose={handleNewCategory}
             />
         </div>
     )

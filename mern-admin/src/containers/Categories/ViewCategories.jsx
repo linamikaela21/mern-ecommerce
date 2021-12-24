@@ -1,5 +1,6 @@
-import { Col, Container, Row, Button, Modal } from "react-bootstrap"
+import { Col, Container, Row, Button } from "react-bootstrap"
 import { Input } from '../../components/Common/Input/Input'
+import { UseModal } from "../../components/Common/UseModal/UseModal"
 
 export const ViewCategories = (props) => {
 
@@ -22,13 +23,13 @@ export const ViewCategories = (props) => {
         </Col>
       </Row>
 
-
-      <Modal show={props.show} onHide={e => props.setShow(e, false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add New Category</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
+      <UseModal
+        show={props.show}
+        setShow={props.setShow}
+        handleClose={props.handleClose}
+        modalTitle={`Add New Category`}
+      >
+        <form>
           <Input
             label={'Category Name'}
             value={props.categoryName}
@@ -51,14 +52,8 @@ export const ViewCategories = (props) => {
             type='file'
             onChange={props.handleCategoryPicture}
           />
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={props.handleNewCategory}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        </form>
+      </UseModal>
 
     </Container>
 

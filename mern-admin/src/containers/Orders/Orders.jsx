@@ -1,9 +1,9 @@
-import { ViewProducts } from "../Products/ViewProducts"
+import { ViewOrders } from "./ViewOrders"
 
 export const Orders = () => {
     return (
         <div>
-            <ViewProducts />
+            <ViewOrders />
         </div>
     )
 }

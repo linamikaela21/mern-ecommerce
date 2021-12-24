@@ -1,7 +1,7 @@
 export const ViewOrders = () => {
     return (
         <div>
-            <h1>Orders</h1>
+            <h1>Ordersssssssssssssssssssssss</h1>
         </div>
     )
 }

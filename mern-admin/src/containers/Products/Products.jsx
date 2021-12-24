@@ -30,11 +30,12 @@ export const Products = () => {
 
     const [img, setImg] = useState('')
 
-    const addImg = (e) => {
+    const addImg = e => {
+        e.preventDefault()
         setImg(e.target.value)
       }
 
-    const handleProductImage = (e) => {
+    const handleProductImage = e => {
         e.preventDefault()
         setProductPictures([...productPictures, img])
         setImg('')
@@ -43,7 +44,6 @@ export const Products = () => {
 
     const handleNewProduct = async () => {
 
-        
         let form = {
             name: name,
             slug: name,
@@ -87,9 +87,10 @@ export const Products = () => {
                 setCategoryId={setCategoryId}
                 img={img}
                 addImg={addImg}
+                productPictures={productPictures}
                 handleProductImage={handleProductImage}
                 createCategoriesList={createCategoriesList}
-                handleNewProduct={handleNewProduct}
+                handleClose={handleNewProduct}
             />
         </div>
     )
