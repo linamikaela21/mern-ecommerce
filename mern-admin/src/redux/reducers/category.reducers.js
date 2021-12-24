@@ -17,6 +17,7 @@ const buildNewCategory = (parentId, categories, category) => {
             {
                 _id: category._id,
                 name: category.name,
+                categoryPicture: category.categoryPicture,
                 slug: category.slug,
                 subCat: []
             }
@@ -28,6 +29,7 @@ const buildNewCategory = (parentId, categories, category) => {
             const newCategory = {
                 _id: category._id,
                 name: category.name,
+                categoryPicture: category.categoryPicture,
                 slug: category.slug,
                 parentId: category.parentId,
                 subCat: []

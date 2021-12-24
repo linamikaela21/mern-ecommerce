@@ -6,6 +6,10 @@ import { ViewProducts } from './ViewProducts'
 export const Products = () => {
 
     const dispatch = useDispatch()
+    
+    const products = useSelector(state => state.products.products)
+    const category = useSelector(state => state.categories)
+    const { token } = useSelector(state => state.auth)
 
     const [show, setShow] = useState(false)
 
@@ -16,9 +20,6 @@ export const Products = () => {
     const [categoryId, setCategoryId] = useState('')
     const [productPictures, setProductPictures] = useState([])
 
-    const products = useSelector(state => state.products.products)
-    const category = useSelector(state => state.categories)
-    const { token } = useSelector(state => state.auth)
 
     const createCategoriesList = (categories, options = []) => {
         for (let cat of categories) {
@@ -65,6 +66,7 @@ export const Products = () => {
         setCategoryId('')
         setProductPictures([])
 
+        window.location.reload()
     }
     
     return (

@@ -26,14 +26,14 @@ exports.addCategory = (req, res) => {
     
     const categoryObj = { 
         name: req.body.name,
+        categoryPicture: req.body.categoryPicture,
         slug: slugify(req.body.name)
     }
 
-    if(req.file) categoryObj.categoryPicture = process.env.API + '/public/' + req.file.filename
+    //if(req.file) categoryObj.categoryPicture = process.env.API + '/public/' + req.file.filename
 
     if(req.body.parentId) categoryObj.parentId = req.body.parentId
 
-    console.log(categoryObj, 'soy categories del back')
     const cat = new Category(categoryObj)
 
 

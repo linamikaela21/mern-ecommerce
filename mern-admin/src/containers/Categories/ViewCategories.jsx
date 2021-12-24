@@ -48,9 +48,10 @@ export const ViewCategories = (props) => {
             }
           </select>
           <Input
-            name={props.categoryPicture}
-            type='file'
-            onChange={props.handleCategoryPicture}
+            label={'Category Pictures'}
+            value={props.categoryPicture}
+            placeholder={'Category Pictures'}
+            onChange={e => props.handleCategoryPicture(e)}
           />
         </form>
       </UseModal>

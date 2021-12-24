@@ -7,8 +7,6 @@ export const addProduct = (form, token) => {
     return async dispatch => {
         dispatch({ type: productContants.ADD_NEW_PRODUCT_REQUEST })
         try {
-
-            //PASO POR USESELECTOR EL TOKEN EN USER.TOKEN Y LO ENVIO POR PARAMETROS
             const res = await axios.post(`${api}/product/create`, form, {
                 headers: {
                     authorization: `Bearer ${token}`

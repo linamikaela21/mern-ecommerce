@@ -10,6 +10,7 @@ export const Categories = () => {
     const [show, setShow] = useState(false)
 
     const category = useSelector(state => state.categories)
+    const { token } = useSelector(state => state.auth)
 
     const [categoryName, setCategoryName] = useState('')
     const [parentCategoryId, setParentCategoryId] = useState('')
@@ -40,7 +41,8 @@ export const Categories = () => {
     }
 
     const handleCategoryPicture = e => {
-        setCategoryPicture(e.target.files[0])
+        e.preventDefault()
+        setCategoryPicture(e.target.value)
     }
 
     const handleNewCategory = () => {
@@ -51,10 +53,10 @@ export const Categories = () => {
             parentId: parentCategoryId,
             categoryPicture: categoryPicture
         }
-        
+
         console.log(form)
 
-        dispatch(addCategory(form))
+        dispatch(addCategory(form, token))
 
         setShow(false)
 
