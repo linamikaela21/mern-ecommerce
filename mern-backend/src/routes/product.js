@@ -4,7 +4,7 @@ const router = express.Router()
 // const shortId = require('shortId')
 // const path = require('path')
 
-const { createProduct, getProducts } = require('../controllers/product')
+const { createProduct } = require('../controllers/product')
 const { requireSignIn, adminMiddleware } = require('../middleware/middleware')
 
 
@@ -21,6 +21,5 @@ const { requireSignIn, adminMiddleware } = require('../middleware/middleware')
 
 router.post('/product/create', requireSignIn, adminMiddleware, createProduct)
 //router.post('/product/create', requireSignIn, adminMiddleware, upload.array('productPicture'), createProduct)
-// router.get('/product/products', requireSignIn, getProducts)
 
 module.exports = router

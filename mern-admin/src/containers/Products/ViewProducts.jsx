@@ -18,14 +18,21 @@ export const ViewProducts = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                    </tr>
+                    {
+                        props.products.length > 0 ?
+                            (props.products.map(prod => {
+                                return (
+                                    <tr>
+                                        <td>{prod._id}</td>
+                                        <td>{prod.name}</td>
+                                        <td>{prod.price}</td>
+                                        <td>{prod.quantity}</td>
+                                        <td>{prod.description}</td>
+                                        <td>{'---'}</td>
+                                    </tr>
+                                )
+                            })) : null
+                    }
                 </tbody>
             </Table>
         )
@@ -43,7 +50,7 @@ export const ViewProducts = (props) => {
 
             <Row>
                 <Col>
-                    { renderProducts() }
+                    {renderProducts()}
                 </Col>
             </Row>
 

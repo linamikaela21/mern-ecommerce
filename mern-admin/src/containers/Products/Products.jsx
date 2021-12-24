@@ -16,9 +16,9 @@ export const Products = () => {
     const [categoryId, setCategoryId] = useState('')
     const [productPictures, setProductPictures] = useState([])
 
-    const products = useSelector(state => state.products)
+    const products = useSelector(state => state.products.products)
     const category = useSelector(state => state.categories)
-    const { token } = useSelector(state => state.auth)
+    //const { token } = useSelector(state => state.auth)
 
     const createCategoriesList = (categories, options = []) => {
         for (let cat of categories) {
@@ -55,7 +55,7 @@ export const Products = () => {
         }
         
         console.log('FORM => ', form)
-        dispatch(addProduct(form, token))
+        dispatch(addProduct(form))
 
         setShow(false)
 

@@ -1,4 +1,4 @@
-const Category = require('../models/category')
+const Category = require('../models/Category')
 const slugify = require('slugify')
 
 const createCategories = (categories, parentId = null) => {

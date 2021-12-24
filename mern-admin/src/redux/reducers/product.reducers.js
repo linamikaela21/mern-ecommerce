@@ -9,6 +9,13 @@ export const productsReducers = (state = initialState, action) => {
     console.log('reducer =>', action.type, 'payload =>', action.payload)
     switch (action.type) {
 
+        case productContants.GET_ALL_PRODUCTS_SUCCESS:
+            state = {
+                ...state,
+                products: action.payload.products
+            }
+            break
+
         case productContants.ADD_NEW_PRODUCT_REQUEST:
             state = {
                 ...state

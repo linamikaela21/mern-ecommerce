@@ -21,15 +21,11 @@ export const getAllCategories = () => {
     }
 }
 
-export const addCategory = (form, token) => {
+export const addCategory = (form) => {
     return async dispatch => {
         dispatch({ type: categoriesContants.ADD_NEW_CATEGORY_REQUEST })
         try {
-            const res = await axios.post(`${api}/category/create`,form, {
-                headers: {
-                    authorization: `Bearer ${token}`
-                }
-            })
+            const res = await axios.post(`${api}/category/create`,form)
             const newCategory = res.data.category
             if (res.status === 201) {
                 dispatch({

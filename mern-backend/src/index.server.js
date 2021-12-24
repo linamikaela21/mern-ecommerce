@@ -10,6 +10,7 @@ const adminRoutes = require('./routes/admin/auth')
 const categoryRoutes = require('./routes/category')
 const productRoutes = require('./routes/product')
 const cartRoutes = require('./routes/cart')
+const initialDataRoutes = require('./routes/admin/initialData')
 
 //Libreria dotenv para leer las variables de entorno
 env.config()
@@ -37,6 +38,7 @@ app.use('/api', adminRoutes)
 app.use('/api', categoryRoutes)
 app.use('/api', productRoutes)
 app.use('/api', cartRoutes)
+app.use('/api', initialDataRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`)

@@ -8,7 +8,7 @@ import { SignUp } from "../containers/SignUp/SignUp"
 import { Products } from "../containers/Products/Products"
 import { Orders } from "../containers/Orders/Orders"
 import { Categories } from "../containers/Categories/Categories"
-import { getAllCategories } from "../redux/actions"
+import { getInitialData } from "../redux/actions/initialData.actions"
 
 export const RouterWeb = () => {
   
@@ -20,7 +20,7 @@ export const RouterWeb = () => {
     if(!auth.authenticate) {
     dispatch(isUserLoggedIn())
     }
-      dispatch(getAllCategories())
+      dispatch(getInitialData())
 }, [dispatch, auth.authenticate])
 
     return (

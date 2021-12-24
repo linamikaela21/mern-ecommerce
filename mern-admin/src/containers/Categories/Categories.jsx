@@ -11,8 +11,6 @@ export const Categories = () => {
 
     const category = useSelector(state => state.categories)
 
-    const { token } = useSelector(state => state.auth)
-
     const [categoryName, setCategoryName] = useState('')
     const [parentCategoryId, setParentCategoryId] = useState('')
     const [categoryPicture, setCategoryPicture] = useState('')
@@ -56,7 +54,7 @@ export const Categories = () => {
         
         console.log(form)
 
-        dispatch(addCategory(form, token))
+        dispatch(addCategory(form))
 
         setShow(false)
 
