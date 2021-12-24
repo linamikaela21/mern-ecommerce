@@ -1,6 +1,8 @@
+import { useState } from "react"
 import { Col, Container, Row, Button, Table } from "react-bootstrap"
 import { Input } from '../../components/Common/Input/Input'
 import { UseModal } from "../../components/Common/UseModal/UseModal"
+import './style.css'
 
 export const ViewProducts = (props) => {
 
@@ -13,7 +15,6 @@ export const ViewProducts = (props) => {
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>Description</th>
                         <th>Category</th>
                     </tr>
                 </thead>
@@ -22,13 +23,12 @@ export const ViewProducts = (props) => {
                         props.products.length > 0 ?
                             (props.products.map(prod => {
                                 return (
-                                    <tr>
+                                    <tr onClick={() => setShowProductDetailModal(prod)} key={prod._id}>
                                         <td>{prod._id}</td>
                                         <td>{prod.name}</td>
                                         <td>{prod.price}</td>
                                         <td>{prod.quantity}</td>
-                                        <td>{prod.description}</td>
-                                        <td>{'---'}</td>
+                                        <td>{prod?.category?.name}</td>
                                     </tr>
                                 )
                             })) : null
@@ -37,23 +37,9 @@ export const ViewProducts = (props) => {
             </Table>
         )
     }
-    return (
-        <Container>
-            <Row>
-                <Col>
-                    <h3>Products</h3>
-                    <Button variant="primary" onClick={e => props.setShow(e, true)}>
-                        Add Product
-                    </Button>
-                </Col>
-            </Row>
 
-            <Row>
-                <Col>
-                    {renderProducts()}
-                </Col>
-            </Row>
-
+    const renderAddProductModal = () => {
+        return (
             <UseModal
                 show={props.show}
                 setShow={props.setShow}
@@ -115,7 +101,85 @@ export const ViewProducts = (props) => {
                         onClick={e => props.handleProductImage(e)}> Add Image</Button>
                 </div>
             </UseModal>
+        )
+    }
 
+    const [productDetailModal, setProductDetailModal] = useState(false)
+    const [productDetails, setProductDetails] = useState(null)
+
+    const handleCloseProductDetails = () => {
+        setProductDetailModal(false)
+    }
+
+    const setShowProductDetailModal = (prod) => {
+        setProductDetails(prod);
+        setProductDetailModal(true)
+    }
+
+    const renderProductDetailsModal = () => {
+        if (!productDetails) return null
+        return (
+            <UseModal
+                show={productDetailModal}
+                setShow={() => setProductDetailModal(false)}
+                handleClose={() => handleCloseProductDetails()}
+                modalTitle={`Product Details`}
+                size='lg'
+            >
+                <Col lg='12' className="p-2">
+                    <Row md='6' lg='12'>
+                        <label className='label'>Name:</label>
+                        <p className='labelDetails'>{productDetails.name}</p>
+                    </Row>
+                    <Row md='6' lg='6'>
+                        <label className='label'>Price:</label>
+                        <p className='labelDetails'>${productDetails.price}</p>
+                    </Row>
+                    <Row md='6' lg='6'>
+                        <label className='label'>Quantity:</label>
+                        <p className='labelDetails'>{productDetails.quantity}</p>
+                    </Row>
+                    <Row md='6' lg='6'>
+                        <label className='label'>Category:</label>
+                        <p className='labelDetails'>{productDetails?.category?.name}</p>
+                    </Row>
+                    <Row md='12'>
+                        <label className='label'>Description:</label>
+                        <p className='labelDetails'>{productDetails.description}</p>
+                    </Row>
+                    <Row>
+                        <label className='d-flex justify-content-center fs-3 fw-bold'>Images</label>
+                        <div className='d-flex justify-content-around'>{productDetails.image.map(pic =>
+                            <div>
+                                <img width='150rem' height='150rem' className='img' src={pic} alt='' />
+                            </div>)}
+                        </div>
+                    </Row>
+                </Col>
+            </UseModal>
+        )
+    }
+
+
+    return (
+        <Container>
+            <Row>
+                <Col>
+                    <h3>Products</h3>
+                    <Button variant="primary" onClick={e => props.setShow(e, true)}>
+                        Add Product
+                    </Button>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col>
+                    {renderProducts()}
+                </Col>
+            </Row>
+
+            {renderAddProductModal()}
+            {renderProductDetailsModal()}
         </Container>
     )
 }

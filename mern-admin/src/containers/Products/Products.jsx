@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from '../../redux/actions/product.actions'
+import { addProduct } from '../../redux/actions'
 import { ViewProducts } from './ViewProducts'
 
 export const Products = () => {
