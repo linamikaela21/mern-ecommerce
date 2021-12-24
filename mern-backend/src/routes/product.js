@@ -20,6 +20,5 @@ const { requireSignIn, adminMiddleware } = require('../middleware/middleware')
 //   const upload = multer({ storage })
 
 router.post('/product/create', requireSignIn, adminMiddleware, createProduct)
-//router.post('/product/create', requireSignIn, adminMiddleware, upload.array('productPicture'), createProduct)
 
 module.exports = router
