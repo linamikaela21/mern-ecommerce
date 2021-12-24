@@ -5,21 +5,15 @@ exports.createProduct = (req, res) => {
     //res.status(200).json({ file: req.files, body: req.body })
 
     const { 
-        name, description, price, quantity, category
+        name, description, price, quantity, category, image
     } = req.body
-
-    let productPicture = []
-
-    if(req.files.length > 0) {
-        productPicture = req.files.map(file => { return { img: file.filename}})
-    }
 
     const product = new Product({
         name, 
         slug: slugify(name), 
         description, 
         price, 
-        productPicture, 
+        image, 
         category, 
         quantity,
         createBy: req.user._id, 

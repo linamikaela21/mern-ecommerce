@@ -18,7 +18,7 @@ export const Products = () => {
 
     const products = useSelector(state => state.products.products)
     const category = useSelector(state => state.categories)
-    //const { token } = useSelector(state => state.auth)
+    const { token } = useSelector(state => state.auth)
 
     const createCategoriesList = (categories, options = []) => {
         for (let cat of categories) {
@@ -39,7 +39,6 @@ export const Products = () => {
         e.preventDefault()
         setProductPictures([...productPictures, img])
         setImg('')
-        console.log(img, productPictures, 'IMAGENES')
     }
 
     const handleNewProduct = async () => {
@@ -55,7 +54,7 @@ export const Products = () => {
         }
         
         console.log('FORM => ', form)
-        dispatch(addProduct(form))
+        dispatch(addProduct(form, token))
 
         setShow(false)
 
