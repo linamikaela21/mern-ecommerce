@@ -44,7 +44,7 @@ export const ViewProducts = (props) => {
                 show={props.show}
                 setShow={props.setShow}
                 handleClose={props.handleClose}
-                modalTitle={`Add New Category`}
+                modalTitle={`Add New Product`}
             >
                 <Input
                     label={'Product Name'}

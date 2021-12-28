@@ -20,13 +20,18 @@ export const Categories = () => {
         let myCategories = []
         categories.forEach(cat => {
             myCategories.push(
-                <li key={cat.name}>
-                    {cat.name}
-                    {cat.subCat.length > 0 ?
-                        (<ul> {renderCategories(cat.subCat)} </ul>)
-                        : null
-                    }
-                </li>
+                {
+                    label: cat.name,
+                    value: cat._id,
+                    children: cat.subCat.length > 0 && renderCategories(cat.subCat)
+                }
+                // <li key={cat.name}>
+                //     {cat.name}
+                //     {cat.subCat.length > 0 ?
+                //         (<ul> {renderCategories(cat.subCat)} </ul>)
+                //         : null
+                //     }
+                // </li>
             )
         })
         return myCategories
@@ -34,7 +39,7 @@ export const Categories = () => {
 
     const createCategoriesList = (categories, options = []) => {
         for (let cat of categories) {
-            options.push({ value: cat._id, name: cat.name })
+            options.push({ value: cat._id, name: cat.name, parentId: cat.parentId })
             if (cat.subCat.length > 0) createCategoriesList(cat.subCat, options)
         }
         return options

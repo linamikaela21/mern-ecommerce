@@ -13,12 +13,12 @@
 }
 
 .cardBody {
-    width: 15rem;
+    width: 12rem;
     padding: 0.5rem;
 }
 
 .cardImg {
-    width: 12rem;
+    width: 10rem;
     height: 10rem;
     overflow: hidden;
     text-align: center;
@@ -33,7 +33,7 @@
 
 .cardInfo {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .cardPrice {
