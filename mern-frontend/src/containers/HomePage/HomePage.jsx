@@ -1,4 +1,4 @@
-import { Container, Row, Col, Nav } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import { NavBar } from "../../components/NavBar/NavBar"
 import { MenuHeader } from "../../components/MenuHeader/MenuHeader"
 
@@ -7,8 +7,8 @@ export const HomePage = () => {
         <div>
             <NavBar />
             <MenuHeader />
-             <Container fluid>
-            </Container> 
+            <Container fluid>
+            </Container>
         </div>
     )
 }

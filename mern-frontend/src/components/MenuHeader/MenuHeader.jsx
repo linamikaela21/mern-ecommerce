@@ -1,5 +1,5 @@
 import { ViewMenuHeader } from "./ViewMenuHeader"
-import { useState, useEffect } from "react"
+import {  useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllCategories } from '../../redux/actions'
 

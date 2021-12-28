@@ -34,15 +34,12 @@ exports.getProductsBySlug = (req, res) => {
             if (error) {
                 return res.status(400).json({ error });
             }
-            //return res.status(200).json( { category })
             if (category) {
-                console.log(category._id.toString());
                 Product.find({ category: category._id })
                 .exec((error, product) => {
                     if (error) {
                         return res.status(400).json({ error });
                     }
-                    //return res.status(200).json({ product })
                     if (product) {
                         return res.status(200).json({ 
                             product,
