@@ -25,7 +25,7 @@ export const ViewProductsListPage = (props) => {
                                                         <span>4.3</span>&nbsp;
                                                         <span>26548</span>
                                                     </div>
-                                                    <div className="cardPrice">${prod.name}</div>
+                                                    <div className="cardPrice">${prod.price}</div>
                                                 </div>
                                             </>
                                         )
