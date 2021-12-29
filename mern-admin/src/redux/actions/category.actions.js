@@ -64,3 +64,20 @@ export const updateCategories = (form) => {
         }
     }
 }
+
+export const deleteCategoriesAction = (ids) => {
+    return async dispatch => {
+        try {
+            const res = await axios.post(`${api}/category/delete`, {
+                payload: ids
+            }, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
+            if (res.status === 200) return true
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}

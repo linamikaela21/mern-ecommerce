@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import CheckboxTree from 'react-checkbox-tree'
 import 'react-checkbox-tree/lib/react-checkbox-tree.css'
 import { BsCheckSquareFill, BsCheckSquare, BsFillArrowDownSquareFill, BsFillArrowRightSquareFill } from 'react-icons/bs';
-import { updateCategories, getAllCategories } from "../../redux/actions"
+import { updateCategories, getAllCategories, deleteCategoriesAction } from "../../redux/actions"
 
 export const ViewCategories = (props) => {
 
@@ -18,9 +18,14 @@ export const ViewCategories = (props) => {
   const [expandedArray, setExpandedArray] = useState([])
   const [updateCategoriesModal, setUpdateCategoriesModal] = useState(false)
 
+  const [deleteCategoriesModal, setDeleteCategoriesModal] = useState(false)
 
   const updateCategory = () => {
+    updateCheckedAndExpandedCategories()
     setUpdateCategoriesModal(true)
+  }
+
+  const updateCheckedAndExpandedCategories = () => {
     const categories = props.createCategoriesList(props.category.categories)
     const checkedArray = []
     const expandedArray = []
@@ -112,7 +117,6 @@ export const ViewCategories = (props) => {
 
     dispatch(updateCategories(form))
       .then(result => {
-        console.log(result, 'RESULTTTTT')
         if (result) dispatch(getAllCategories())
       })
 
@@ -226,6 +230,53 @@ export const ViewCategories = (props) => {
     )
   }
 
+  const deleteCategory = () => {
+    updateCheckedAndExpandedCategories()
+    setDeleteCategoriesModal(true)
+  }
+
+  const deleteCategories = () => {
+    const checkedIdsArray = checkedArray.map((item, index) => ({_id: item.value}))
+    const expandedIdsArray = expandedArray.map((item, index) => ({_id: item.value}))
+    const idsArray = [...checkedIdsArray, ...expandedIdsArray]
+    
+    dispatch(deleteCategoriesAction(idsArray))
+    .then(result => {
+      if(result) dispatch(getAllCategories())
+      setDeleteCategoriesModal(false)
+    })
+  }
+
+  const renderDeleteCategoriesModal = () => {
+    return (
+      <UseModal
+        show={deleteCategoriesModal}
+        setShow={setDeleteCategoriesModal}
+        handleClose={() => setDeleteCategoriesModal(false)}
+        modalTitle={`Confirm`}
+        buttons={[
+          {
+            label: 'Yes',
+            color: 'success',
+            onClick: deleteCategories
+          },
+          {
+            label: 'No',
+            color: 'danger',
+            onClick: () => alert('No')
+          }
+        ]}
+      >
+        <h5>Expanded</h5> 
+        { expandedArray.map((item, index) => <span key={index}>{item.name}</span>)}
+
+        <h5>Checked</h5> 
+        { checkedArray.map((item, index) => <span key={index}>{item.name}</span>)}
+
+      </UseModal>
+    )
+  }
+
   return (
     <Container>
       <Row>
@@ -259,7 +310,7 @@ export const ViewCategories = (props) => {
         </Col>
         <Row>
           <Col>
-            <Button variant="danger" onClick={() => { '' }}>
+            <Button variant="danger" onClick={() => deleteCategory(true)}>
               Delete Category
             </Button>
             <Button variant="info" onClick={() => updateCategory(true)}>
@@ -273,6 +324,9 @@ export const ViewCategories = (props) => {
 
       {/* Edit Categories */}
       {renderUpdateCategoriesModal()}
+
+      {/* Delete Categories */}
+      {renderDeleteCategoriesModal()}
 
     </Container>
 

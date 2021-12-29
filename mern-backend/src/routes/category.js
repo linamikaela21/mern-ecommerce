@@ -4,7 +4,7 @@ const router = express.Router()
 // const shortId = require('shortId')
 // const path = require('path')
 
-const { addCategory, getCategories, updateCategories } = require('../controllers/category')
+const { addCategory, getCategories, updateCategories, deleteCategories } = require('../controllers/category')
 const { requireSignIn, adminMiddleware } = require('../middleware/middleware')
 
 // const storage = multer.diskStorage({
@@ -21,5 +21,6 @@ const { requireSignIn, adminMiddleware } = require('../middleware/middleware')
 router.post('/category/create', requireSignIn, adminMiddleware, addCategory)
 router.get('/category/getCategories', getCategories)
 router.post('/category/update', updateCategories)
+router.post('/category/delete', deleteCategories)
 
 module.exports = router
