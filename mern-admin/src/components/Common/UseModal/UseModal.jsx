@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap"
 export const UseModal = (props) => {
   return (
     <Modal size={props.size} show={props.show} onHide={() => props.setShow(false)}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton className="bg-dark text-white">
         <Modal.Title>{props.modalTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
