@@ -2,6 +2,8 @@ import axios from "axios"
 import { api } from '../../urlConfig'
 import { categoriesContants } from './constants'
 
+const token = window.localStorage.getItem('token')
+
 export const getAllCategories = () => {
     return async dispatch => {
         dispatch({ type: categoriesContants.GET_ALL_CATEGORIES_REQUEST })
@@ -42,6 +44,21 @@ export const addCategory = (form, token) => {
                     payload: res.data.error
                 });
             }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+
+export const updateCategories = (form) => {
+    return async dispatch => {
+        try {
+            const res = await axios.post(`${api}/category/update`, form, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
+            if (res.status === 201) return true
         } catch (error) {
             console.error(error)
         }

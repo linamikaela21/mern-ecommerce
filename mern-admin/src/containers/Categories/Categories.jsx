@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addCategory } from "../../redux/actions/category.actions"
+import { addCategory } from "../../redux/actions"
 import { ViewCategories } from "./ViewCategories"
 
 export const Categories = () => {
@@ -58,8 +58,6 @@ export const Categories = () => {
             parentId: parentCategoryId,
             categoryPicture: categoryPicture
         }
-
-        console.log(form)
 
         dispatch(addCategory(form, token))
 

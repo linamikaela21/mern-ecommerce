@@ -9,8 +9,6 @@ const initialState = {
 const buildNewCategory = (parentId, categories, category) => {
     let myCategories = []
 
-    console.log(parentId, categories, category)
-
     if(parentId === undefined){
         return [
             ...categories,
