@@ -237,14 +237,16 @@ export const ViewCategories = (props) => {
 
   const deleteCategories = () => {
     const checkedIdsArray = checkedArray.map((item, index) => ({_id: item.value}))
-    const expandedIdsArray = expandedArray.map((item, index) => ({_id: item.value}))
-    const idsArray = [...checkedIdsArray, ...expandedIdsArray]
+    //const expandedIdsArray = expandedArray.map((item, index) => ({_id: item.value}))
+    //const idsArray = [...checkedIdsArray, ...expandedIdsArray]
     
-    dispatch(deleteCategoriesAction(idsArray))
-    .then(result => {
-      if(result) dispatch(getAllCategories())
-      setDeleteCategoriesModal(false)
-    })
+    if(checkedIdsArray.length > 0) {
+      dispatch(deleteCategoriesAction(checkedIdsArray))
+      .then(result => {
+        if(result) dispatch(getAllCategories())
+        setDeleteCategoriesModal(false)
+      })
+    }
   }
 
   const renderDeleteCategoriesModal = () => {
