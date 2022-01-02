@@ -13,6 +13,7 @@ export const ViewPage = () => {
     const [categories, setcategories] = useState([])
     const [categoryId, setCategoryId] = useState('')
     const [description, setDescription] = useState('')
+    const [type, setType] = useState('')
     const [banner, setBanner] = useState([])
     const [product, setProduct] = useState([])
 
@@ -23,11 +24,41 @@ export const ViewPage = () => {
     }, [category])
 
     const handleBanners = e => {
-        setProduct(e.target.value)
+        setBanner([...banner, e.target.value])
     }
 
     const handleProductPictures = e => {
-        setBanner(e.target.value)
+        setProduct([...product, e.target.value])
+    }
+
+    const onChangeCategory = e => {
+        const category = categories.find(cat => cat._id === e.target.value)
+        setCategoryId(e.target.value)
+        setType(category)
+    }
+
+    const handleNewPage = async (e) => {
+
+        e.preventDefault()
+
+        if (title === "") {
+            alert('Title is requiered')
+            setShowPageModal(false)
+            return
+        }
+        let form = {
+            title: title,
+            description: description,
+            category: categoryId,
+            banners: banner,
+            products: product
+        }
+
+        setShowPageModal(false)
+
+        console.log('FORM => ', form)
+
+        //window.location.reload()
     }
 
     const renderNewPageModal = () => {
@@ -35,7 +66,7 @@ export const ViewPage = () => {
             <UseModal
                 show={showPageModal}
                 setShow={setShowPageModal}
-                handleClose={() => setShowPageModal(false)}
+                handleClose={e => handleNewPage(e)}
                 modalTitle={`Create a New Page`}
                 size='md'
             >
@@ -45,7 +76,7 @@ export const ViewPage = () => {
                             <select
                                 className="form-control"
                                 value={categoryId}
-                                onChange={e => setCategoryId(e.target.value)}
+                                onChange={e => onChangeCategory(e)}
                                 placeholder={`Page Title`}
                             >
                                 <option>Select Category</option>
@@ -75,16 +106,26 @@ export const ViewPage = () => {
                             </Input>
                         </Col>
                     </Row>
+                    {
+                        banner.length > 0 ? banner.map((banner, index) =>
+                            <Row key={index}><Col>{banner.name}</Col></Row>
+                        ) : null
+                    }
                     <Row>
                         <Col>
                             <Input
                                 value={banner}
                                 onChange={e => handleBanners(e)}
-                                placeholder={`Page Banner`}
+                                placeholder={`Page Banner Image`}
                             >
                             </Input>
                         </Col>
                     </Row>
+                    {
+                        product.length > 0 ? product.map((product, index) =>
+                            <Row key={index}><Col>{product.name}</Col></Row>
+                        ) : null
+                    }
                     <Row>
                         <Col>
                             <Input
