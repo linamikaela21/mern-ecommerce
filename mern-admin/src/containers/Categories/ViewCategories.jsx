@@ -83,9 +83,6 @@ export const ViewCategories = (props) => {
     })
 
     dispatch(updateCategories(form))
-      .then(result => {
-        if (result) dispatch(getAllCategories())
-      })
 
     setUpdateCategoriesModal(false)
   }

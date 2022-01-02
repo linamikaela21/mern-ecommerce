@@ -4,7 +4,7 @@ import { categoriesContants } from './constants'
 
 const token = window.localStorage.getItem('token')
 
-export const getAllCategories = () => {
+const getAllCategories = () => {
     return async dispatch => {
         dispatch({ type: categoriesContants.GET_ALL_CATEGORIES_REQUEST })
         const res = await axios.get(`${api}/category/getCategories`)
@@ -52,13 +52,22 @@ export const addCategory = (form, token) => {
 
 export const updateCategories = (form) => {
     return async dispatch => {
+        dispatch({ type: categoriesContants.UPDATE_CATEGORIES_REQUEST })
         try {
             const res = await axios.post(`${api}/category/update`, form, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
             })
-            if (res.status === 201) return true
+            if (res.status === 201) {
+                dispatch({ type: categoriesContants.UPDATE_CATEGORIES_SUCCESS })
+                dispatch(getAllCategories())
+            } else {
+            dispatch({
+                type: categoriesContants.UPDATE_CATEGORIES_FAIL,
+                payload: res.data.error
+            })
+            }
         } catch (error) {
             console.error(error)
         }
@@ -80,4 +89,8 @@ export const deleteCategoriesAction = (ids) => {
             console.error(error)
         }
     }
+}
+
+export {
+    getAllCategories
 }

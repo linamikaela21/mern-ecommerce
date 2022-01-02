@@ -9,7 +9,7 @@ const initialState = {
 const buildNewCategory = (parentId, categories, category) => {
     let myCategories = []
 
-    if(parentId === undefined){
+    if (parentId === undefined) {
         return [
             ...categories,
             {
@@ -22,8 +22,8 @@ const buildNewCategory = (parentId, categories, category) => {
         ];
     }
 
-    for(let cat of categories) {
-        if(cat._id === parentId){
+    for (let cat of categories) {
+        if (cat._id === parentId) {
             const newCategory = {
                 _id: category._id,
                 name: category.name,
@@ -36,7 +36,7 @@ const buildNewCategory = (parentId, categories, category) => {
                 ...cat,
                 subCat: cat.subCat.length > 0 ? [...cat.subCat, newCategory] : [newCategory]
             })
-        }else{
+        } else {
             myCategories.push({
                 ...cat,
                 subCat: cat.subCat ? buildNewCategory(parentId, cat.subCat, category) : []
@@ -78,6 +78,25 @@ export const categoriesReducers = (state = initialState, action) => {
             state = {
                 ...initialState,
                 loading: false,
+                error: action.payload.error
+            }
+            break
+
+        case categoriesContants.UPDATE_CATEGORIES_REQUEST:
+            state = {
+                ...state,
+                loading: true,
+            }
+            break
+        case categoriesContants.UPDATE_CATEGORIES_SUCCESS:
+            state = {
+                ...initialState,
+                loading: false,
+            }
+            break
+        case categoriesContants.UPDATE_CATEGORIES_FAIL:
+            state = {
+                ...initialState,
                 error: action.payload.error
             }
             break
