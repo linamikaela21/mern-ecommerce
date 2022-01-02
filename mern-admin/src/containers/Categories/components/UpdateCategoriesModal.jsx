@@ -51,7 +51,10 @@ export const UpdateCategoriesModal = (props) => {
                 </select>
               </Col>
               <Col className="m-2">
-                <select className="form-control">
+                <select className="form-control"
+                value={item.type}
+                onChange={e => handleCategoryUpdateInput('type', e.target.value, index, 'expanded')}
+                >
                   <option value=''>Select Type</option>
                   <option value='store'>Store</option>
                   <option value='product'>Product</option>
@@ -78,7 +81,6 @@ export const UpdateCategoriesModal = (props) => {
             <Row key={index}>
               <Col className="m-2">
                 <input className="form-control"
-                  label={''}
                   value={item.name}
                   placeholder={'Category Name'}
                   onChange={e => handleCategoryUpdateInput('name', e.target.value, index, 'checked')}
@@ -98,7 +100,10 @@ export const UpdateCategoriesModal = (props) => {
                 </select>
               </Col>
               <Col className="m-2">
-                <select className="form-control">
+              <select className="form-control"
+                value={item.type}
+                onChange={e => handleCategoryUpdateInput('type', e.target.value, index, 'checked')}
+                >
                   <option value=''>Select Type</option>
                   <option value='store'>Store</option>
                   <option value='product'>Product</option>

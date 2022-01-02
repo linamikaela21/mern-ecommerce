@@ -16,6 +16,7 @@ export const SideBar = () => {
                                 <Col md={2} className='sideBar'>
                                     <ul>
                                         <li> <NavLink to='/' className='text-decoration-none fs-4'>Home</NavLink></li>
+                                        <li> <NavLink to='/pages' className='text-decoration-none fs-4'>Pages</NavLink></li>
                                         <li> <NavLink to='/categories' className='text-decoration-none fs-4'>Categories</NavLink></li>
                                         <li> <NavLink to='/products' className='text-decoration-none fs-4'>Products</NavLink></li>
                                         <li> <NavLink to='/orders' className='text-decoration-none fs-4'>Orders</NavLink></li>

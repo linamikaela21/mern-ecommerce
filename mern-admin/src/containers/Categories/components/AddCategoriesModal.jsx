@@ -13,6 +13,8 @@ export const AddCategoriesModal = (props) => {
     setCategoryName,
     parentCategoryId,
     setParentCategoryId,
+    categoryType,
+    setCategoryType,
     categoryPicture,
     handleCategoryPicture,
     categoryList
@@ -44,6 +46,17 @@ export const AddCategoriesModal = (props) => {
             )
           }
         </select>
+        <br />
+          <select className="form-control"
+            value={categoryType}
+            onChange={e => setCategoryType(e.target.value)}
+          >
+            <option value=''>Select Type</option>
+            <option value='store'>Store</option>
+            <option value='product'>Product</option>
+            <option value='page'>Page</option>
+          </select>
+          <br />
         <Input
           label={'Category Pictures'}
           value={categoryPicture}

@@ -97,11 +97,8 @@ export const ViewCategories = (props) => {
 
     if (checkedIdsArray.length > 0) {
       dispatch(deleteCategoriesAction(checkedIdsArray))
-        .then(result => {
-          if (result) dispatch(getAllCategories())
-          setDeleteCategoriesModal(false)
-        })
     }
+    setDeleteCategoriesModal(false)
   }
 
   const renderDeleteCategoriesModal = () => {
@@ -180,6 +177,8 @@ export const ViewCategories = (props) => {
         setCategoryName={props.setCategoryName}
         parentCategoryId={props.parentCategoryId}
         setParentCategoryId={props.setParentCategoryId}
+        categoryType={props.categoryType}
+        setCategoryType={props.setCategoryType}
         categoryPicture={props.categoryPicture}
         handleCategoryPicture={props.handleCategoryPicture}
         categoryList={categoryList}

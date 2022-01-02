@@ -14,6 +14,7 @@ const createCategories = (categories, parentId = null) => {
             name: cat.name,
             slug: cat.slug,
             parentId: cat.parentId,
+            type: cat.type,
             categoryPicture: cat.categoryPicture,
             subCat: createCategories(categories, cat._id)
         })
@@ -26,6 +27,7 @@ exports.addCategory = (req, res) => {
     const categoryObj = {
         name: req.body.name,
         categoryPicture: req.body.categoryPicture,
+        type: req.body.type,
         slug: slugify(req.body.name)
     }
 

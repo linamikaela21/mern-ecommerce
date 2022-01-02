@@ -14,6 +14,7 @@ export const Categories = () => {
 
     const [categoryName, setCategoryName] = useState('')
     const [parentCategoryId, setParentCategoryId] = useState('')
+    const [categoryType, setCategoryType] = useState('')
     const [categoryPicture, setCategoryPicture] = useState('')
 
     const renderCategories = categories => {
@@ -39,7 +40,12 @@ export const Categories = () => {
 
     const createCategoriesList = (categories, options = []) => {
         for (let cat of categories) {
-            options.push({ value: cat._id, name: cat.name, parentId: cat.parentId })
+            options.push({ 
+                value: cat._id, 
+                name: cat.name, 
+                parentId: cat.parentId, 
+                type: cat.type,
+            })
             if (cat.subCat.length > 0) createCategoriesList(cat.subCat, options)
         }
         return options
@@ -56,6 +62,7 @@ export const Categories = () => {
             name: categoryName,
             slug: categoryName,
             parentId: parentCategoryId,
+            type: categoryType,
             categoryPicture: categoryPicture
         }
 
@@ -80,6 +87,8 @@ export const Categories = () => {
                 setCategoryName={setCategoryName}
                 parentCategoryId={parentCategoryId}
                 setParentCategoryId={setParentCategoryId}
+                categoryType={categoryType}
+                setCategoryType={setCategoryType}
                 categoryPicture={categoryPicture}
                 handleCategoryPicture={handleCategoryPicture}
                 handleClose={handleNewCategory}

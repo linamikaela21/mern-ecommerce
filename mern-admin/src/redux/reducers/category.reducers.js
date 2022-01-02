@@ -97,6 +97,27 @@ export const categoriesReducers = (state = initialState, action) => {
         case categoriesContants.UPDATE_CATEGORIES_FAIL:
             state = {
                 ...initialState,
+                loading: false,
+                error: action.payload.error
+            }
+            break
+
+        case categoriesContants.DELETE_CATEGORIES_REQUEST:
+            state = {
+                ...state,
+                loading: true,
+            }
+            break
+        case categoriesContants.DELETE_CATEGORIES_SUCCESS:
+            state = {
+                ...initialState,
+                loading: false,
+            }
+            break
+        case categoriesContants.DELETE_CATEGORIES_FAIL:
+            state = {
+                ...initialState,
+                loading: false,
                 error: action.payload.error
             }
             break

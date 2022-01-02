@@ -10,7 +10,7 @@ const getAllCategories = () => {
         const res = await axios.get(`${api}/category/getCategories`)
         if (res.status === 200) {
             const { categoriesList } = res.data
-            dispatch({ 
+            dispatch({
                 type: categoriesContants.GET_ALL_CATEGORIES_SUCCESS,
                 payload: { categories: categoriesList }
             })
@@ -63,10 +63,10 @@ export const updateCategories = (form) => {
                 dispatch({ type: categoriesContants.UPDATE_CATEGORIES_SUCCESS })
                 dispatch(getAllCategories())
             } else {
-            dispatch({
-                type: categoriesContants.UPDATE_CATEGORIES_FAIL,
-                payload: res.data.error
-            })
+                dispatch({
+                    type: categoriesContants.UPDATE_CATEGORIES_FAIL,
+                    payload: res.data.error
+                })
             }
         } catch (error) {
             console.error(error)
@@ -76,6 +76,7 @@ export const updateCategories = (form) => {
 
 export const deleteCategoriesAction = (ids) => {
     return async dispatch => {
+        dispatch({ type: categoriesContants.DELETE_CATEGORIES_REQUEST })
         try {
             const res = await axios.post(`${api}/category/delete`, {
                 payload: ids
@@ -84,7 +85,15 @@ export const deleteCategoriesAction = (ids) => {
                     authorization: `Bearer ${token}`
                 }
             })
-            if (res.status === 200) return true
+            if (res.status === 200) {
+                dispatch({ type: categoriesContants.DELETE_CATEGORIES_SUCCESS })
+                dispatch(getAllCategories())
+            } else {
+                dispatch({
+                    type: categoriesContants.DELETE_CATEGORIES_FAIL,
+                    payload: res.data.error
+                })
+            }
         } catch (error) {
             console.error(error)
         }

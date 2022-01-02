@@ -9,6 +9,7 @@ import { Products } from "../containers/Products/Products"
 import { Orders } from "../containers/Orders/Orders"
 import { Categories } from "../containers/Categories/Categories"
 import { getInitialData } from "../redux/actions/initialData.actions"
+import { Page } from "../containers/Page/Page"
 
 export const RouterWeb = () => {
   
@@ -32,6 +33,7 @@ export const RouterWeb = () => {
       <Route exact path='/products' element={<Products />} />
       <Route exact path='/orders' element={<Orders />} />
       <Route exact path='/categories' element={<Categories />} />
+      <Route exact path='/pages' element={<Page />} />
       </Routes>
       </>
     )
